@@ -154,7 +154,16 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+# If using CSRF protection
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000"
+]
+
+# Important for cookie security
+SESSION_COOKIE_SAMESITE = "None"   # or "None" if using HTTPS
+SESSION_COOKIE_SECURE = True      # True if you're on HTTPS
+CSRF_COOKIE_SAMESITE = "None"      # or "None"
+CSRF_COOKIE_SECURE = True
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
