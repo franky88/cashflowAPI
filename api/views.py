@@ -29,6 +29,7 @@ def me_view(request):
     })
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def logout_view(request):
     refresh_token = request.COOKIES.get("refresh_token")
     if refresh_token:
