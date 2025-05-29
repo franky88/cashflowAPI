@@ -30,6 +30,13 @@ def me_view(request):
 
 @api_view(["POST"])
 def logout_view(request):
+    refresh_token = request.COOKIES.get("refresh_token")
+    if refresh_token:
+        try:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+        except Exception as e:
+            print(f"Error blacklisting token: {str(e)}")
     response = Response({"message": "Logged out"})
     response.delete_cookie("access_token", samesite="None", secure=True)
     response.delete_cookie("refresh_token", samesite="None", secure=True)
