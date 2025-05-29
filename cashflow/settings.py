@@ -162,9 +162,9 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Important for cookie security
 SESSION_COOKIE_SAMESITE = "None"   # or "None" if using HTTPS
-SESSION_COOKIE_SECURE = True      # True if you're on HTTPS
+SESSION_COOKIE_SECURE = False      # True if you're on HTTPS
 CSRF_COOKIE_SAMESITE = "None"      # or "None"
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
