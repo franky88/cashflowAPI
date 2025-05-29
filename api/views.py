@@ -31,8 +31,8 @@ def me_view(request):
 @api_view(["POST"])
 def logout_view(request):
     response = Response({"message": "Logged out"})
-    response.delete_cookie("access_token")
-    response.delete_cookie("refresh_token")
+    response.delete_cookie("access_token", samesite="None", secure=True)
+    response.delete_cookie("refresh_token", samesite="None", secure=True)
     return response
 
 class LoginView(APIView):
@@ -53,7 +53,8 @@ class LoginView(APIView):
             value=str(refresh.access_token),
             httponly=True,
             secure=True,
-            samesite="None"
+            samesite="None",
+            max_age=86400
         )
         response.set_cookie(
             key="refresh_token",
